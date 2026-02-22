@@ -1,0 +1,138 @@
+{
+  "name": "GetWeather Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=What is the weather today {{$now.format('yyyy-MM-dd')}}. Just give back the temperature and wind at 5 PM in Little Elm, TX",
+        "options": {
+          "systemMessage": "=You are a weather expert and use tavily tool to check todays weather and return back with Wind and temperature. Todays date is {{$now.format('yyyy-MM-dd')}}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e8218510-01b4-4648-a7ea-b489931b10bb",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        208
+      ],
+      "id": "37188e9c-5e10-4995-a6b7-9bae9a775dbb",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "a7Lx3C2hjRGCq9At",
+          "name": "n8nSuryarajCred"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "api_key",
+              "value": "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"
+            },
+            {
+              "name": "query",
+              "value": "=What is the weather today in Little Elm? What is the wind at 5PM. Todays date is {{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        368,
+        208
+      ],
+      "id": "129fca6d-4510-4241-abd9-a0627aa0f9f7",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -32,
+        0
+      ],
+      "id": "c0f3077e-b197-4f67-9350-fd3eef204d24",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8c42a2ce-3f7d-467a-a46d-fdb966b7a8b2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2db2abcc32cbbb9e9c5dd0176dcb6a5fbd3adaf42f92caf472bf17f9484b7921"
+  },
+  "id": "o1HVYAUXOka0r5jl",
+  "tags": []
+}
