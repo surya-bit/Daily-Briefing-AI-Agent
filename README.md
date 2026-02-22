@@ -30,6 +30,8 @@ Fetches the latest AI news using the [Tavily](https://tavily.com) search API. Re
 ### 4. GetWeather Workflow
 Fetches current weather for **Little Elm, TX**. Checks wind speed at 5PM and flags whether conditions are suitable for pickleball. If wind exceeds 10 mph, the briefing includes a note that it is not ideal for playing pickleball.
 
+<img width="1606" height="627" alt="Workflow" src="https://github.com/user-attachments/assets/6c0aeed7-5bc4-4889-a050-608293904f91" />
+
 ---
 
 ## 🛠️ Tech Stack
