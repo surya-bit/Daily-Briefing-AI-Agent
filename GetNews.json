@@ -50,8 +50,8 @@
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "a7Lx3C2hjRGCq9At",
-          "name": "n8nSuryarajCred"
+          "id": "YOUR_OPENAI_CRED_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL"
         }
       }
     },
@@ -64,7 +64,7 @@
           "parameters": [
             {
               "name": "api_key",
-              "value": "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"
+              "value": "YOUR_TAVILY_API_KEY"
             },
             {
               "name": "query",
@@ -129,8 +129,8 @@
   "versionId": "9aecbc9d-6d70-4a2e-892d-3465b9999308",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "2db2abcc32cbbb9e9c5dd0176dcb6a5fbd3adaf42f92caf472bf17f9484b7921"
+    "instanceId": "YOUR_INSTANCE_ID"
   },
-  "id": "ZxopRtMnkN4PSjBD",
+  "id": "YOUR_WORKFLOW_ID",
   "tags": []
 }
