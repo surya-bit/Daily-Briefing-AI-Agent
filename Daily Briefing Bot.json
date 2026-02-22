@@ -10,14 +10,14 @@
         0
       ],
       "id": "83021cc6-c894-416c-af34-58a39287c459",
-      "name": "When clicking ‘Execute workflow’"
+      "name": "When clicking 'Execute workflow'"
     },
     {
       "parameters": {
         "promptType": "define",
         "text": "=Give me a summary of all the events scheduled today.Along with if I can play pickleball or not and news related to AI. Todays date is {{$now.toFormat('yyyy-MM-dd')}}",
         "options": {
-          "systemMessage": "You are a Daily Briefing Orchestration Agent.\n\nYour job is to:\n\nDetermine what information is needed for the user’s daily briefing.\n\nRoute requests to the appropriate tools (e.g., calendar, weather, news).\n\nGather the required information from those tools.\n\nSynthesize the results into a clear, concise morning briefing tailored to the user.\n\nIf the wind is greather than 10 MPH then instead of printing weather at 5 PM just print that this weather is not suited to play pickleball\n\nGuidelines:\n\nAlways call the appropriate tools when information is required.\n\nDo not fabricate data.\n\nIf a tool returns no data, clearly state that section has no updates.\n\nKeep the final response structured and easy to read.\n\nPrioritize calendar events, urgent items, and time-sensitive information.\n\nYour final output should be a well-formatted daily briefing, not raw tool responses.\n\n\nFormat the daily briefing as clean HTML with inline styles \nso it renders properly in email. Use headers, colored sections, \nand bullet points styled with HTML tags, not markdown symbols.Do not wrap the output in markdown code blocks or backticks. \nReturn only raw HTML with no ```html or ``` markers."
+          "systemMessage": "You are a Daily Briefing Orchestration Agent.\n\nYour job is to:\n\nDetermine what information is needed for the user's daily briefing.\n\nRoute requests to the appropriate tools (e.g., calendar, weather, news).\n\nGather the required information from those tools.\n\nSynthesize the results into a clear, concise morning briefing tailored to the user.\n\nIf the wind is greather than 10 MPH then instead of printing weather at 5 PM just print that this weather is not suited to play pickleball\n\nGuidelines:\n\nAlways call the appropriate tools when information is required.\n\nDo not fabricate data.\n\nIf a tool returns no data, clearly state that section has no updates.\n\nKeep the final response structured and easy to read.\n\nPrioritize calendar events, urgent items, and time-sensitive information.\n\nYour final output should be a well-formatted daily briefing, not raw tool responses.\n\n\nFormat the daily briefing as clean HTML with inline styles \nso it renders properly in email. Use headers, colored sections, \nand bullet points styled with HTML tags, not markdown symbols.Do not wrap the output in markdown code blocks or backticks. \nReturn only raw HTML with no ```html or ``` markers."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -50,8 +50,8 @@
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "a7Lx3C2hjRGCq9At",
-          "name": "n8nSuryarajCred"
+          "id": "YOUR_OPENAI_CRED_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL"
         }
       }
     },
@@ -60,9 +60,9 @@
         "description": "Call this tool to get Calender events scheduled on that day",
         "workflowId": {
           "__rl": true,
-          "value": "09IWGqxrZJq79fbe",
+          "value": "YOUR_GETCALENDAR_WORKFLOW_ID",
           "mode": "list",
-          "cachedResultUrl": "/workflow/09IWGqxrZJq79fbe",
+          "cachedResultUrl": "/workflow/YOUR_GETCALENDAR_WORKFLOW_ID",
           "cachedResultName": "GetCalenderEvents"
         },
         "workflowInputs": {
@@ -88,9 +88,9 @@
         "description": "Call this tool to get weather information",
         "workflowId": {
           "__rl": true,
-          "value": "o1HVYAUXOka0r5jl",
+          "value": "YOUR_GETWEATHER_WORKFLOW_ID",
           "mode": "list",
-          "cachedResultUrl": "/workflow/o1HVYAUXOka0r5jl",
+          "cachedResultUrl": "/workflow/YOUR_GETWEATHER_WORKFLOW_ID",
           "cachedResultName": "GetWeather Workflow"
         },
         "workflowInputs": {
@@ -116,9 +116,9 @@
         "description": "Call this tool inorder to get news about AI",
         "workflowId": {
           "__rl": true,
-          "value": "ZxopRtMnkN4PSjBD",
+          "value": "YOUR_GETNEWS_WORKFLOW_ID",
           "mode": "list",
-          "cachedResultUrl": "/workflow/ZxopRtMnkN4PSjBD",
+          "cachedResultUrl": "/workflow/YOUR_GETNEWS_WORKFLOW_ID",
           "cachedResultName": "GetNews"
         },
         "workflowInputs": {
@@ -141,7 +141,7 @@
     },
     {
       "parameters": {
-        "sendTo": "suryamachani23562@gmail.com",
+        "sendTo": "YOUR_EMAIL@gmail.com",
         "subject": "Daily Briefing",
         "message": "={{ $json.output }}",
         "options": {
@@ -159,15 +159,15 @@
       "webhookId": "62737f1a-7877-4242-831b-82f6e26327ba",
       "credentials": {
         "gmailOAuth2": {
-          "id": "aLaZihmMS0m4NjGs",
-          "name": "Gmail account"
+          "id": "YOUR_GMAIL_CRED_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
         }
       }
     }
   ],
   "pinData": {},
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "When clicking 'Execute workflow'": {
       "main": [
         [
           {
@@ -243,8 +243,8 @@
   "versionId": "dfd110fe-5bd2-4eed-ba3c-a2bc9178a03c",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "2db2abcc32cbbb9e9c5dd0176dcb6a5fbd3adaf42f92caf472bf17f9484b7921"
+    "instanceId": "YOUR_INSTANCE_ID"
   },
-  "id": "k3hBg9W5IRTYybaf",
+  "id": "YOUR_WORKFLOW_ID",
   "tags": []
 }
